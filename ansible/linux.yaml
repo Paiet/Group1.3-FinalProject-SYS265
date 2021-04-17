@@ -1,0 +1,45 @@
+---
+  - name: Installing ranger (apt package)
+    hosts: ubuntu 
+    become: true
+    tasks:
+    - name: Installing ranger
+      apt:
+        name: ranger
+
+  - name: Installing git (yum package)
+    hosts: centos
+    become: true
+    tasks:
+    - name: Installing git
+      yum: 
+        name: git 
+        state: latest
+  
+  - name: Creating a new linux user
+    hosts: centos
+    become: true
+    tasks: 
+      - name: Create a user
+        become: true 
+        user: 
+          name: Devin
+          shell: /bin/bash
+      - name: Unlock the password
+        become: true
+        command: echo "password" | passwd Devin -e
+
+        
+  - name: Create a domain user
+    hosts: dc
+    tasks: 
+      - name: Create a user
+        win_domain_user:
+          name: Devin
+          firstname: Devin
+          surname: Paden
+          password: NIVEDpass1!
+          state: present
+          domain_username: GROUP3.LOCAL\group3adm
+          domain_password: Userpassword$123
+          domain_server: GROUP3.LOCAL
