@@ -15,7 +15,7 @@ if [[ ! $@ =~ "-p" ]]; then
 fi
 cd /etc/dhcp/
 mv dhcpd.conf dhcpd.conf.old
-wget https://raw.githubusercontent.com/SirSertile/Group1.2-FinalProject-SYS265/master/dhcp/dhcpd.conf
+wget https://raw.githubusercontent.com/Paiet/Group1.3-FinalProject-SYS265/main/DHCP/dhcpd.conf
 # Parsing options for getopts 
 while getopts "msp: " option; do
 	case $option in
