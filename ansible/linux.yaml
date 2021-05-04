@@ -7,13 +7,13 @@
       apt:
         name: ranger
 
-  - name: Installing git (yum package)
+  - name: Installing apache (yum package)
     hosts: centos
     become: true
     tasks:
-    - name: Installing git
+    - name: Installing apache
       yum: 
-        name: git 
+        name: httpd
         state: latest
   
   - name: Creating a new linux user
@@ -23,11 +23,11 @@
       - name: Create a user
         become: true 
         user: 
-          name: Devin
+          name: samnick
           shell: /bin/bash
       - name: Unlock the password
         become: true
-        command: echo "password" | passwd Devin -e
+        command: echo "password" | passwd samnick -e
 
         
   - name: Create a domain user
@@ -35,10 +35,10 @@
     tasks: 
       - name: Create a user
         win_domain_user:
-          name: Devin
-          firstname: Devin
-          surname: Paden
-          password: NIVEDpass1!
+          name: samnick
+          firstname: samnick
+          surname: samnick
+          password: Userpassword$123
           state: present
           domain_username: GROUP3.LOCAL\group3adm
           domain_password: Userpassword$123
