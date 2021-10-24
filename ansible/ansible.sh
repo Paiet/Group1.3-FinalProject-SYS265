@@ -1,5 +1,4 @@
 #!/bin/bash
-# Written by David Serate
 # Auto-installs Ansible
 # Probably broken
 if (( $EUID != 0 )); then 
